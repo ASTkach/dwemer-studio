@@ -1,0 +1,159 @@
+// fonts
+
+@mixin font($FONT_WEIGHT, $FONT_SIZE, $TEXT_COLOR) {
+    font-weight: $FONT_WEIGHT;
+    font-size: $FONT_SIZE;
+    color: $TEXT_COLOR;
+}
+
+// hover
+
+@mixin font-hover($FONT_WEIGHT, $TEXT_COLOR) {
+    font-weight: $FONT_WEIGHT;
+    color: $TEXT_COLOR;
+}
+
+// visibility
+
+@mixin visible-element {
+    opacity: 1;
+    visibility: visible;
+}
+
+@mixin hidden-element {
+    opacity: 0;
+    visibility: hidden;
+}
+
+// pseudo-element
+
+@mixin pseudo-element($CONTENT, $TOP, $RIGHT, $BOTTOM, $LEFT) {
+    position: absolute;
+    content: $CONTENT;
+    top: $TOP;
+    right: $RIGHT;
+    bottom: $BOTTOM;
+    left: $LEFT;
+}
+
+@mixin pseudo-link($FONT_WEIGHT) {
+    display: block;
+    content: attr(name);
+    font-weight: $FONT_WEIGHT;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+}
+
+// position
+
+@mixin position_absolute($TOP, $RIGHT, $BOTTOM, $LEFT) {
+    position: absolute;
+    top: $TOP;
+    right: $RIGHT;
+    bottom: $BOTTOM;
+    left: $LEFT;
+}
+
+@mixin position_fixed($TOP, $RIGHT, $BOTTOM, $LEFT) {
+    position: fixed;
+    top: $TOP;
+    right: $RIGHT;
+    bottom: $BOTTOM;
+    left: $LEFT;
+}
+
+
+
+// figures
+
+@mixin arrow ($BORDER_WIDTH, $BORDER_HEIGHT, $BORDER_DEPTH, $BORDER_COLOR) {
+    width: $BORDER_WIDTH;
+    height: $BORDER_HEIGHT;
+    border-top: $BORDER_DEPTH solid $BORDER_COLOR;
+    border-left: $BORDER_DEPTH solid $BORDER_COLOR;
+}
+
+@mixin triangle ($MAIN_BORDER, $SECONDRY_BORDER, $BORDER_COLOR) {
+    border-top: $MAIN_BORDER solid $BORDER_COLOR;
+    border-right: $SECONDRY_BORDER solid transparent;
+    border-left: $SECONDRY_BORDER solid transparent;
+}
+
+@mixin circle ($CIRCLE_SIZE) {
+    width: $CIRCLE_SIZE;
+    height: $CIRCLE_SIZE;
+    border-radius: 50%;
+}
+
+// display
+
+@mixin display-flex ($JUSTIFY_CONTENT, $ALIGN_ITEMS, $FLEX_WRAP) {
+    display: flex;
+    justify-content: $JUSTIFY_CONTENT;
+    align-items: $ALIGN_ITEMS;
+    flex-wrap: $FLEX_WRAP;
+}
+
+@mixin display-flex-fd ($FLEX_DIRECTION) {
+    display: flex;
+    flex-direction: $FLEX_DIRECTION;
+}
+
+// size 
+
+@mixin size ($WIDTH, $HEIGHT) {
+    width: $WIDTH;
+    height: $HEIGHT;
+}
+
+@mixin max-size ($MAX_WIDTH, $MAX_HEIGHT) {
+    max-width: $MAX_WIDTH;
+    max-height: $MAX_HEIGHT;
+}
+
+@mixin size_and_max-size ($WIDTH, $HEIGHT, $MAX_WIDTH, $MAX_HEIGHT) {
+    width: $WIDTH;
+    height: $HEIGHT;
+    max-width: $MAX_WIDTH;
+    max-height: $MAX_HEIGHT;
+}
+
+@mixin width ($WIDTH, $MAX_WIDTH) {
+    width: $WIDTH;
+    max-width: $MAX_WIDTH;
+}
+
+@mixin height ($HEIGHT, $MAX_HEIGHT) {
+    height: $HEIGHT;
+    max-height: $MAX_HEIGHT;
+}
+
+//Адаптивное свойство
+
+@mixin adaptiv-value($PROPERTY, $START_SIZE, $MIN_SIZE, $TYPE) {
+    $ADD_SIZE: $START_SIZE - $MIN_SIZE;
+
+    @if $TYPE==1 {
+        //Только если меньше контейнера
+        #{$PROPERTY}: $START_SIZE + px;
+
+        @media (max-width: #{$CONTAINER_WIDTH + px}) {
+            #{$PROPERTY}: calc(#{$MIN_SIZE + px} + #{$ADD_SIZE} * ((100vw - 320px) / #{$CONTAINER_WIDTH - 320}));
+        }
+    }
+
+    @else if $TYPE==2 {
+        //Только если больше контейнера
+        #{$PROPERTY}: $START_SIZE + px;
+
+        @media (min-width: #{$CONTAINER_WIDTH + px}) {
+            #{$PROPERTY}: calc(#{$MIN_SIZE + px} + #{$ADD_SIZE} * ((100vw - 320px) / #{$PROJECT_MAX_WIDTH - 320}));
+        }
+    }
+
+    @else {
+        //Всегда
+        #{$PROPERTY}: calc(#{$MIN_SIZE + px} + #{$ADD_SIZE} * ((100vw - 320px) / #{$PROJECT_MAX_WIDTH - 320}));
+    }
+}

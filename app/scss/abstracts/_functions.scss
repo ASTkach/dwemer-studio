@@ -1,0 +1,27 @@
+@use 'sass:math';
+
+// Rem Calc
+
+@function rem($FONT_SIZE) {
+
+    // @return calc($FONT_SIZE / $BASIC_FONT_SIZE) * 1rem;
+    @if math.is-unitless($FONT_SIZE) {
+        @return math.div($FONT_SIZE, 16)+rem;
+    }
+
+    @else {
+        @error 'REMOVE PX!!!';
+    }
+}
+
+// Em Calc
+
+@function em($INDENT, $FONT_SIZE) {
+    @return calc($INDENT / $FONT_SIZE) * 1em;
+}
+
+// % Calc
+
+@function percentage($INDENT_1, $INDENT_2) {
+    @return calc(($INDENT_1 * 100) / $INDENT_2) * 1%;
+}

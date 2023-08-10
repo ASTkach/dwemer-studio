@@ -1,0 +1,28 @@
+@use '../abstracts/' as *;
+@use 'sass:math';
+
+.logo {
+    z-index: 3;
+
+    &__img {
+        max-width: 100px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .logo {
+        &--footer {
+            order: 1;
+            z-index: 1;
+        }
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .logo {
+
+        &__img {
+            max-width: 100%;
+        }
+    }
+}

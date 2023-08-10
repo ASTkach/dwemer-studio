@@ -1,0 +1,49 @@
+@use '../abstracts/' as *;
+@use 'sass:math';
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding-block: 33px;
+    background-color: transparent;
+    transition: padding-block 0.3s ease, background-color 0.3s ease;
+    z-index: 3;
+
+    &._fixed {
+        background-color: rgba(0, 0, 0, 0.93);
+        padding-block: 10px;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        gap: 93px;
+    }
+}
+
+
+// @media screen and (max-width: 1024px) {
+//     .header {
+//         padding-block: 26px;
+//     }
+// }
+
+@media screen and (max-width: 950px) {
+    .header {
+        &__container {
+            justify-content: space-between;
+        }
+
+        &._fixed {
+            padding-block: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        padding-block: 56px;
+        background-color: var(--third-color);
+    }
+}

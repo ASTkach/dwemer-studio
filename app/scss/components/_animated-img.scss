@@ -1,0 +1,80 @@
+@use '../abstracts/' as *;
+@use 'sass:math';
+
+.animated {
+    &__satellite {
+        // transform-origin: left bottom;
+        // transform: translate(-79%, -64%) rotate(25deg);
+    }
+
+    &__item {
+        --translate-value: 5%;
+        animation-name: up-and-down;
+        animation-duration: 1.8s;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        transform: translateY(0);
+    }
+
+    &__it {
+        // animation: rolling 20s linear infinite;
+        // transform: translate(0, 0);
+    }
+
+    // &__it {
+
+    //     transform: translate(0px, 0px);
+    //     animation: linear moveObject 2s infinite;
+    // }
+
+    // @keyframes moveObject {
+    //     0% {
+    //         transform: translate(0px, 0px);
+    //     }
+
+    //     100% {
+    //         transform: translate(115px, -70px);
+    //     }
+
+    // }
+
+    &__item--reverse {
+        animation-direction: alternate-reverse;
+    }
+
+    &__item--triangle {
+        --translate-value: 7.5%;
+    }
+
+    &__item--light {
+        animation-name: fade-in;
+        opacity: 0;
+    }
+}
+
+@keyframes up-and-down {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(var(--translate-value));
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+// @keyframes rolling {
+//     100% {
+//         transform: translate(53%, -30%);
+//     }
+// }

@@ -1,0 +1,65 @@
+@use '../abstracts/' as *;
+@use 'sass:math';
+
+.footer {
+    padding-block: 40px;
+    font-weight: 400;
+    font-size: var(--fz-100);
+    line-height: 1.58;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        column-gap: 60px;
+        row-gap: 20px;
+    }
+
+    &__mail {
+        text-decoration: underline;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+    }
+
+    &__copy {
+        margin-right: 100px;
+    }
+}
+
+@media (hover: hover) {
+    .footer {
+        &__mail:hover {
+            color: var(--color-accent-primary);
+            text-decoration: underline;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .footer {
+        &__copy {
+            margin-right: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .footer {
+        padding-block: 51px 30px;
+
+        &__container {
+            flex-wrap: wrap;
+            justify-content: center;
+            column-gap: 125px;
+            row-gap: 40px;
+        }
+
+        &__mail {
+            order: 2;
+            align-self: flex-start;
+        }
+
+        &__copy {
+            order: 4;
+        }
+    }
+}
